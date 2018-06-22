@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        .center{
+
+
+            text-align: center;
+        }
+    h1{
+           text-align: center;
+    }
+    </style>
+</head>
+<body>
+<div class="center">
+    <h1>微信登录</h1>
+<div>
+    <img id="avatar" width="200px" height="200px" src="https://login.weixin.qq.com/qrcode/{{ random_str }}" alt="">
+</div>
+</div>
+
+
+<script src="/static/jquery-3.2.1.min.js"></script>
+<script>
+    $(function () {
+        check_login()
+    });
+
+    function check_login() {
+        $.ajax({
+            url:'/check_login',
+            success:function (data) {
+
+                if (data.code===408){
+                      check_login()
+                }
+                 else if (data.code===201){
+                        $('#avatar').attr('src',data.avatar);
+                        check_login()
+                }
+                else {
+                    location.href='/index'
+                }
+
+
+
+            }
+        })
+    }
+</script>
+</body>
+</html>

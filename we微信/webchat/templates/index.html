@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<img src="/get_avatar?{{ user_info.User.HeadImgUrl|url_params()}}" alt="">
+<h1>用户信息：{{ user_info.User.NickName }} <a style="float: right" href="/login">登录</a></h1>
+<h2><a href="/all_contacts">通讯录</a></h2>
+<h2>最近联系人 </h2>
+{% for recent_contacts in user_info.ContactList %}
+    <p>{{ recent_contacts.NickName|safe }}</p>
+{% endfor %}
+<h2>公众号</h2>
+{% for user in user_info.MPSubscribeMsgList %}
+    <h3>{{ user.NickName}}</h3>
+    {% if user.MPArticleList %}
+        {% for article in user.MPArticleList %}
+        <p><a href="{{ article.Url }}" target="_blank">{{article.Title  }}</a></p>
+        {% endfor %}
+
+    {% endif %}
+{% endfor %}
+
+<script src="../jquery-3.2.1.min.js"></script>
+</body>
+</html>

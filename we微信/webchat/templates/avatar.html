@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+
+{#测试头像获取#}
+<h1>{{ foo(123)}}</h1>
+<img src="/get_avatar?{{ 'https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxgeticon?seq=1195699109&username=@92d5de452861f95b9dee39145488f727&skey=@crypt_86403b1b_98ec9491573535e3f0edb28081637745'|url_params() }}" alt="">
+<script src="../jquery-3.2.1.min.js"></script>
+</body>
+</html>
